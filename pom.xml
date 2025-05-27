@@ -21,15 +21,15 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <!-- SonarQube Configuration -->
     <sonar.projectKey>com.example.maven-project</sonar.projectKey>
     <sonar.host.url>http://43.204.112.219:9000</sonar.host.url>
-    <sonar.token>sqa_5472e85376ce1828812b185ad1c8bce622eef7f0</sonar.token>
-    <!-- Optional: Define organization if using SonarCloud -->
-    <!-- <sonar.organization>your-org</sonar.organization> -->
+    <sonar.token>${env.SONAR_TOKEN}</sonar.token>
   </properties>
 
-  <!-- Nexus Repository Configuration -->
+  <!-- Repositories for downloading dependencies -->
   <repositories>
     <repository>
       <id>nexus-public</id>
@@ -37,6 +37,7 @@
     </repository>
   </repositories>
 
+  <!-- Repositories for downloading plugins -->
   <pluginRepositories>
     <pluginRepository>
       <id>nexus-public</id>
@@ -44,44 +45,50 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <!-- Repositories for deploying artifacts -->
   <distributionManagement>
     <repository>
-      <id>nexus</id>
+      <id>nexus-releases</id>
       <name>MCTS-release</name>
       <url>http://13.233.131.236:8081/repository/MCTS-release/</url>
     </repository>
     <snapshotRepository>
-      <id>nexus</id>
+      <id>nexus-snapshots</id>
       <name>MCTS-SNAPSHOT</name>
       <url>http://13.233.131.236:8081/repository/MCTS-SNAPSHOT/</url>
     </snapshotRepository>
-    <!-- <site>
-      <id>site-server</id>
-      <name>Test Project Site</name>
-      <url>file:///tmp/maven-project-site</url>
-    </site> -->
   </distributionManagement>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <!-- Compiler Plugin -->
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+        </plugin>
+        <!-- SonarQube Plugin -->
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>3.9.1.2184</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
-      <!-- Compiler Plugin -->
+      <!-- Compiler Plugin Configuration -->
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
         </configuration>
       </plugin>
-
       <!-- SonarQube Plugin -->
       <plugin>
         <groupId>org.sonarsource.scanner.maven</groupId>
         <artifactId>sonar-maven-plugin</artifactId>
-        <version>3.9.1.2184</version>
       </plugin>
-
-      <!-- Other plugins as needed -->
     </plugins>
   </build>
 
@@ -92,7 +99,35 @@
         <artifactId>servlet-api</artifactId>
         <version>2.5</version>
       </dependency>
-      <!-- Other dependencies as needed -->
+      <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>jsp-api</artifactId>
+        <version>2.2</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-core</artifactId>
+        <version>1.3</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-library</artifactId>
+        <version>1.3</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>3.12.4</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -104,7 +139,7 @@
   </scm>
 
   <prerequisites>
-    <maven>3.0.3</maven>
+    <maven>3.6.0</maven>
   </prerequisites>
 
 </project>
