@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>webapp</artifactId>
-  <packaging>pom</packaging>
+  <packaging>war</packaging>
   <name>Webapp</name>
   <description>Webapp.</description>
 
