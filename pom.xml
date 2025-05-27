@@ -13,10 +13,10 @@
   <description>Sample Maven project with a working, deployable site.</description>
   <url>http://www.example.com</url>
 
-  <modules>
+  <-- <modules>
     <module>server</module>
     <module>webapp</module>
-  </modules>
+  </modules> -->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
