@@ -23,7 +23,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- SonarQube Configuration -->
     <sonar.projectKey>com.example.maven-project</sonar.projectKey>
-    <sonar.host.url>http://localhost:9000</sonar.host.url>
+    <sonar.host.url>http://43.204.112.219:9000</sonar.host.url>
     <!-- Optional: Define organization if using SonarCloud -->
     <!-- <sonar.organization>your-org</sonar.organization> -->
   </properties>
@@ -46,11 +46,11 @@
   <distributionManagement>
     <repository>
       <id>nexus-releases</id>
-      <url>http://your-nexus-host:8081/repository/maven-releases/</url>
+      <url>http://13.233.131.236:8081/repository/MCTS-release/</url>
     </repository>
     <snapshotRepository>
       <id>nexus-snapshots</id>
-      <url>http://your-nexus-host:8081/repository/maven-snapshots/</url>
+      <url>http://13.233.131.236:8081/repository/MCTS-SNAPSHOT/</url>
     </snapshotRepository>
     <site>
       <id>site-server</id>
