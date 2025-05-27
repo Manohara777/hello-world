@@ -24,6 +24,7 @@
     <!-- SonarQube Configuration -->
     <sonar.projectKey>com.example.maven-project</sonar.projectKey>
     <sonar.host.url>http://43.204.112.219:9000</sonar.host.url>
+    <sonar.token>sqa_5472e85376ce1828812b185ad1c8bce622eef7f0</sonar.token>
     <!-- Optional: Define organization if using SonarCloud -->
     <!-- <sonar.organization>your-org</sonar.organization> -->
   </properties>
@@ -45,18 +46,20 @@
 
   <distributionManagement>
     <repository>
-      <id>nexus-releases</id>
+      <id>nexus</id>
+      <name>MCTS-release</name>
       <url>http://13.233.131.236:8081/repository/MCTS-release/</url>
     </repository>
     <snapshotRepository>
-      <id>nexus-snapshots</id>
+      <id>nexus</id>
+      <name>MCTS-SNAPSHOT</name>
       <url>http://13.233.131.236:8081/repository/MCTS-SNAPSHOT/</url>
     </snapshotRepository>
-    <site>
+    <!-- <site>
       <id>site-server</id>
       <name>Test Project Site</name>
       <url>file:///tmp/maven-project-site</url>
-    </site>
+    </site> -->
   </distributionManagement>
 
   <build>
